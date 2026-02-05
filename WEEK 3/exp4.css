@@ -1,0 +1,23 @@
+.navbar{
+    background-color: black;
+    color:white;
+    margin:auto;
+    height:50px;
+    
+}
+
+.navbar ul{
+    display:flex;
+    list-style: none;
+}
+
+.navbar ul li a {
+    display: block;
+    padding:15px;
+    color:white;
+    text-decoration: none;
+}
+.navbar ul li:hover{
+    background-color: aqua;
+
+}
