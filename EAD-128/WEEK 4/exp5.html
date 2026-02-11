@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>exp5</title>
+        <style>
+            .container{
+                height: 400px;
+                position: relative;
+                border: 2px solid black;
+                margin: 11px solid yellow;
+            }
+            .box{
+                width: 120px;
+                height: 120px;
+                color: azure;
+                text-align: center;
+                font-weight: 100;
+            }
+            .static{
+                position: relative;
+                background-color: brown;
+                text-align: center;
+                
+            }
+            .relative{
+                position: relative;
+                background-color: blueviolet;
+                text-align: center;
+                top: 30px;
+                left: 40px;
+            }
+            .absolute{
+                position: absolute;
+                background-color: blue;
+                text-align: center;
+                top: 30px;
+                right: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box static">static</div>
+            <div class="box relative">relative</div>
+            <div class="box absolute">absolute</div>
+        </div>
+    </body>
+</html>
