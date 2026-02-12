@@ -1,0 +1,35 @@
+#calcii
+{
+    margin:auto;
+    text-align: center;
+    color:black;
+    background-color:blanchedalmond;
+    width:400px;
+    height:350px;
+    padding-top: 50px;
+}
+
+#heading1
+{
+    color:brown;
+    text-decoration:double;
+    text-shadow: 55%;
+}
+#result
+{
+    padding:40px ;
+    background-color:mediumpurple;
+    margin-top: 30px;
+}
+
+.buttons{
+    color:black;
+    background-color: cadetblue;
+    padding: 20px;
+}
+.buttons:hover{
+    background-color: deepskyblue;
+}
+#result:hover{
+    background-color: seagreen;
+}

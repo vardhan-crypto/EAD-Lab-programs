@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <link rel="stylesheet" href="calci.css">
+</head>
+
+<body>
+
+    <div id="calcii">
+        <h1 id="heading1">CALCULATOR</h1>
+        <label>ENTER FIRST NUMBER :</label>
+        <input type="number" id="num1" placeholder="Enter the 1st number">
+        <br>
+        <br>
+        <label>ENTER SECOND NUMBER :</label>
+        <input type="number" id="num2" placeholder="Enter 2nd number">
+        <br>
+        <br>
+        <button class="buttons" onclick="handle(add)">+</button>
+        <button class="buttons" onclick="handle(subtract)">-</button>
+        <button class="buttons" onclick="handle(multiply)">X</button>
+        <button class="buttons" onclick="handle(divide)">/</button>
+
+        <div id="result"><label> Result : </label></div>
+    </div>
+
+
+    <script src="calci.js"></script>
+</body>
+
+</html>
