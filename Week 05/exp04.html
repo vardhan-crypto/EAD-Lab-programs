@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Processor Tool</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f3; text-align: center; padding-top: 50px; }
+        .container { background: white; padding: 30px; border-radius: 12px; display: inline-block; width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 80px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; padding: 10px; }
+        button { width: 100%; padding: 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .output { text-align: left; margin-top: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>String Analysis Tool</h2>
+    <textarea id="strInput" placeholder="Enter a sentence..."></textarea>
+    <button onclick="processString()">Analyze String</button>
+
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    const reverseStr = function(str) {
+        return str.split('').reverse().join('');
+    };
+
+    const countVowels = (str) => {
+        const matches = str.match(/[aeiou]/gi);
+        return matches ? matches.length : 0;
+    };
+
+    const findLongest = function(str) {
+        let words = str.split(' ');
+        let longest = "";
+        for (let word of words) {
+            if (word.length > longest.length) longest = word;
+        }
+        return longest;
+    };
+
+    function processString() {
+        let text = document.getElementById('strInput').value;
+        let out = document.getElementById('output');
+
+        if (!text) {
+            out.innerHTML = "Please enter some text.";
+            return;
+        }
+
+        out.innerHTML = `
+            <strong>Reverse:</strong> ${reverseStr(text)} <br>
+            <strong>Vowel Count:</strong> ${countVowels(text)} <br>
+            <strong>Longest Word:</strong> ${findLongest(text)} <br>
+            <strong>Uppercase:</strong> ${text.toUpperCase()}
+        `;
+    }
+</script>
+
+</body>
+</html>

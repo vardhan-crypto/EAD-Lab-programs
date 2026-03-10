@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .button {
+            height: 2cm;
+            width: 3cm;
+            background-color: gray;
+        }
+
+        #display {
+            height: 2cm;
+            background-color: rgb(108, 171, 150);
+            text-align: center;
+            width: 12cm;
+        }
+
+        .boxEqual {
+            height: calc(4cm + (10px));
+            width: 3cm;
+            background-color: gray;
+        }
+
+        .boxZero {
+            height: 2cm;
+            width: calc(6cm + (10px));
+            background-color: gray;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        td > div {
+            display: flex;
+            align-content: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button:hover, .boxEqual:hover, .boxZero:hover {
+            background-color: red;
+        }
+
+        table {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div>
+            <div class="calculator">
+                <table>
+                    <tr>
+                        <td colspan="4"><input type="text" name="" id="display"></td>
+                    </tr>
+                    <tr>
+                        <td><div class="button" style="background-color: red;" onclick="clearThis()">C</div></td>
+                        <td><div class="button">M+</div></td>
+                        <td><div class="button" onclick="opop(divi, '/')">/</div></td>
+                        <td><div class="button" onclick="opop(mul, 'X')">X</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="button" onclick="append('7')">7</div></td>
+                        <td><div class="button" onclick="append('8')">8</div></td>
+                        <td><div class="button" onclick="append('9')">9</div></td>
+                        <td><div class="button" onclick="opop(sub, '-')">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="button" onclick="append('4')">4</div></td>
+                        <td><div class="button" onclick="append('5')">5</div></td>
+                        <td><div class="button" onclick="append('6')">6</div></td>
+                        <td><div class="button" onclick="opop(add, '+')">+</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="button" onclick="append('1')">1</div></td>
+                        <td><div class="button" onclick="append('2')">2</div></td>
+                        <td><div class="button" onclick="append('3')">3</div></td>
+                        <td rowspan="2"><div class="boxEqual" onclick="evalu()">=</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div class="boxZero" onclick="append('0')">0</div></td>
+                        <td><div class="button" onclick="append('.')">.</div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script>
+        let display = document.getElementById('display');
+        var n1 = '';
+        var n2 = '';
+        var meth = '';
+
+        function append(value) {
+            display.value += value;
+            if(n1 == '') {
+                n1 = value;
+            } else {
+                n2 = value;
+                evalu(n1, n2, meth);
+            }
+        }
+
+        function opop(value, x) {
+            display.value += x;
+            meth = value;
+        }
+
+        function add(x, y) {
+            return Number(x) + Number(y);
+        }
+
+        function sub(x, y) {
+            return Number(x) + Number(y);
+        }
+
+        function mul(x, y) {
+            return Number(x) + Number(y);
+        }
+
+        function divi(x, y) {
+            return Number(x) + Number(y);
+        }
+
+        function evalu(num1 = n1, num2 = n2, operation = meth) {
+            try {
+                display.value = operation(num1, num2);
+            } catch(error) {
+                display.value = 'ERROR';
+            }
+        }
+
+        function clearThis() {
+            display.value = '';
+        }
+    </script>
+</body>
+</html>

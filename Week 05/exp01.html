@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #message {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            min-height: 1.2rem;
+        }
+        .error { color: red; }
+        .success { color: green; }
+
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button id="loginBtn" onclick="handleLogin()">Login</button>
+    <div id="message"></div>
+</div>
+
+<script>
+    function createAttemptTracker() {
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        return function() {
+            attempts++;
+            return {
+                count: attempts,
+                remaining: maxAttempts - attempts,
+                isLocked: attempts >= maxAttempts
+            };
+        };
+    }
+
+    const trackAttempt = createAttemptTracker();
+
+    function handleLogin() {
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+        const msg = document.getElementById('message');
+        const btn = document.getElementById('loginBtn');
+
+        msg.className = "error";
+
+        if (user === "") {
+            msg.innerText = "Username must not be empty.";
+            return;
+        }
+        if (pass.length < 6) {
+            msg.innerText = "Password must be minimum 6 characters.";
+            return;
+        }
+
+        const status = trackAttempt();
+
+        if (status.isLocked) {
+            msg.innerText = "Too many failed attempts. Login disabled.";
+            btn.disabled = true;
+        } else {
+            msg.innerText = "Invalid credentials. Attempts left: " + status.remaining;
+        }
+    }
+</script>
+
+</body>
+</html>

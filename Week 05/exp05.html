@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Payroll System</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; padding: 40px; }
+        .payroll-box { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1rem; }
+        .report { margin-top: 20px; padding-top: 15px; border-top: 2px solid #eee; }
+    </style>
+</head>
+<body>
+
+<div class="payroll-box">
+    <h2>Payroll Calculator</h2>
+    <div class="input-group">
+        <label>Name</label>
+        <input type="text" id="empName" placeholder="Enter Name">
+    </div>
+    <div class="input-group">
+        <label>Basic Salary</label>
+        <input type="number" id="basicSalary" placeholder="Enter Basic Salary">
+    </div>
+    <button onclick="generatePayroll()">Calculate Salary</button>
+
+    <div id="payrollReport" class="report"></div>
+</div>
+
+<script>
+    function Employee(name, basicSalary, hra = 2000, ta = 1000) {
+        this.name = name;
+        this.basicSalary = parseFloat(basicSalary);
+        this.hra = hra;
+        this.ta = ta;
+
+        this.calculateNetSalary = function() {
+            let gross = this.basicSalary + this.hra + this.ta;
+            let tax = gross * 0.10;
+            let net = gross - tax;
+
+            return {
+                gross: gross,
+                tax: tax,
+                net: net
+            };
+        };
+    }
+
+    function generatePayroll() {
+        let name = document.getElementById('empName').value;
+        let salary = document.getElementById('basicSalary').value;
+        let reportDiv = document.getElementById('payrollReport');
+
+        if (!name || !salary) {
+            reportDiv.innerHTML = "Please fill in all fields.";
+            return;
+        }
+
+        let emp = new Employee(name, salary);
+        let results = emp.calculateNetSalary();
+
+        reportDiv.innerHTML = `
+            <h3>Salary Slip for ${emp.name}</h3>
+            <p><strong>Gross Salary:</strong> $${results.gross.toFixed(2)}</p>
+            <p><strong>Tax (10%):</strong> $${results.tax.toFixed(2)}</p>
+            <hr>
+            <p style="font-size: 1.2rem; color: #28a745;"><strong>Net Salary: $${results.net.toFixed(2)}</strong></p>
+        `;
+    }
+</script>
+
+</body>
+</html>
