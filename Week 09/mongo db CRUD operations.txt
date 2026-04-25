@@ -1,0 +1,637 @@
+show dbs
+College    8.00 KiB
+admin     40.00 KiB
+config   100.00 KiB
+local     40.00 KiB
+use College
+switched to db College
+db.students.insertOne({name:"Abhilash",Roll:160124737134,dept:"IT"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('69e23b59acac79d17c53b2af')
+}
+db.students.insertMany([{name:"Snithika",Roll:160124737084,dept:"IT"},])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69e23c82acac79d17c53b2b0')
+  }
+}
+db.students.insertMany([{name:"Snithika",Roll:160124737084,dept:"IT"},{name:"Thanvith",Roll:160124737133,dept:"IT"},{name:"Rajesh",Roll:160124737126,dept:"IT"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69e23ce5acac79d17c53b2b1'),
+    '1': ObjectId('69e23ce5acac79d17c53b2b2'),
+    '2': ObjectId('69e23ce5acac79d17c53b2b3')
+  }
+}
+db.students.find();
+{
+  _id: ObjectId('69e23b59acac79d17c53b2af'),
+  name: 'Abhilash',
+  Roll: 160124737134,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b1'),
+  name: 'Snithika',
+  Roll: 160124737084,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b2'),
+  name: 'Thanvith',
+  Roll: 160124737133,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b3'),
+  name: 'Rajesh',
+  Roll: 160124737126,
+  dept: 'IT'
+}
+db.students.find().pretty();
+{
+  _id: ObjectId('69e23b59acac79d17c53b2af'),
+  name: 'Abhilash',
+  Roll: 160124737134,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b1'),
+  name: 'Snithika',
+  Roll: 160124737084,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b2'),
+  name: 'Thanvith',
+  Roll: 160124737133,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b3'),
+  name: 'Rajesh',
+  Roll: 160124737126,
+  dept: 'IT'
+}
+db.students.find({Roll:160124737133});
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b2'),
+  name: 'Thanvith',
+  Roll: 160124737133,
+  dept: 'IT'
+}
+db.students.updateOne({{name:"Snithika"},$set:{dept:"CSE"}})
+SyntaxError: Unexpected token (1:23)
+
+> 1 | db.students.updateOne({{name:"Snithika"},$set:{dept:"CSE"}})
+    |                        ^
+db.students.updateOne({name:"Snithika"},$set:{dept:"CSE"})
+SyntaxError: Unexpected token, expected "," (1:44)
+
+> 1 | db.students.updateOne({name:"Snithika"},$set:{dept:"CSE"})
+    |                                             ^
+db.students.updateOne({{name:"Snithika"},$set:{dept:"CSE"}});
+SyntaxError: Unexpected token (1:23)
+
+> 1 | db.students.updateOne({{name:"Snithika"},$set:{dept:"CSE"}});
+    |                        ^
+db.students.updateOne({name:"Snithika"},{$set:{dept:"CSE"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.students.find({name:"Snithika"});
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b1'),
+  name: 'Snithika',
+  Roll: 160124737084,
+  dept: 'CSE'
+}
+db.students.updateMany({dept:"IT"},{$set:{WinterUpSkilling:"yes"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+db.students.find();
+{
+  _id: ObjectId('69e23b59acac79d17c53b2af'),
+  name: 'Abhilash',
+  Roll: 160124737134,
+  dept: 'IT',
+  WinterUpSkilling: 'yes'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b1'),
+  name: 'Snithika',
+  Roll: 160124737084,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b2'),
+  name: 'Thanvith',
+  Roll: 160124737133,
+  dept: 'IT',
+  WinterUpSkilling: 'yes'
+}
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b3'),
+  name: 'Rajesh',
+  Roll: 160124737126,
+  dept: 'IT',
+  WinterUpSkilling: 'yes'
+}
+db.students.deleteOne({name:"Abhilash"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.students.deleteMany({dept:"IT"});
+{
+  acknowledged: true,
+  deletedCount: 2
+}
+db.students.find();
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b1'),
+  name: 'Snithika',
+  Roll: 160124737084,
+  dept: 'CSE'
+}
+db.students.insertMany([{name:"Abhilash",age:19,dept:"IT",marks:90},{name:"Snithika",age:19,dept:"CSE",marks:100},{name:"Thanvith",age:15,dept:"AIDS",marks:75},{name:"Rajesh",age:25,dept:"IT",marks:50}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69e25c09acac79d17c53b2b4'),
+    '1': ObjectId('69e25c09acac79d17c53b2b5'),
+    '2': ObjectId('69e25c09acac79d17c53b2b6'),
+    '3': ObjectId('69e25c09acac79d17c53b2b7')
+  }
+}
+db.students.find();
+{
+  _id: ObjectId('69e23ce5acac79d17c53b2b1'),
+  name: 'Snithika',
+  Roll: 160124737084,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Rajesh',
+  age: 25,
+  dept: 'IT',
+  marks: 50
+}
+db.students.deleteOne({Roll:160124737134});
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+db.students.deleteOne({Roll:160124737084});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.students.find();
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Rajesh',
+  age: 25,
+  dept: 'IT',
+  marks: 50
+}
+ db.students.find({age:{$ge:20});
+SyntaxError: Unexpected token, expected "," (1:31)
+
+> 1 |  db.students.find({age:{$ge:20});
+    |                                ^
+ db.students.find({age:{$ge:20}});
+MongoServerError[BadValue]: unknown operator: $ge
+ db.students.find({age:{$gt:20}});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Rajesh',
+  age: 25,
+  dept: 'IT',
+  marks: 50
+}
+db.students.find({marks:{$gte:75}});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+db.students.find({dept:"IT"},{marks:{$gt:80}})
+MongoServerError[Location16020]: Expression $gt takes exactly 2 arguments. 1 were passed in.
+db.students.find({dept:"IT",marks:{$gt:80}});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+db.students.find({$or:[{dept:"CSE"},{marks:{$gt:50}}]});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+db.students.find({},{name:1,marks:1,_id:0});
+{
+  name: 'Abhilash',
+  marks: 90
+}
+{
+  name: 'Snithika',
+  marks: 100
+}
+{
+  name: 'Thanvith',
+  marks: 75
+}
+{
+  name: 'Rajesh',
+  marks: 50
+}
+db.students.find({},{name:1,marks:1});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Rajesh',
+  marks: 50
+}
+db.students.find().sort({marks:-1}).limit(3);
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+db.students.find({name:{$regex:^S}});
+SyntaxError: Unexpected token (1:31)
+
+> 1 | db.students.find({name:{$regex:^S}});
+    |                                ^
+db.students.find({name:{$regex:"^S"}});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+db.students.find({marks:{$gte:60,$lte:90},dept:{$ne:"IT"}});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+db.students.find({marks:{$lte:50},{$inc:{marks:5}});
+SyntaxError: Unexpected token (1:34)
+
+> 1 | db.students.find({marks:{$lte:50},{$inc:{marks:5}});
+    |                                   ^
+db.students.updateMany({marks:{$lte:50},{$inc:{marks:5}});
+SyntaxError: Unexpected token (1:40)
+
+> 1 | db.students.updateMany({marks:{$lte:50},{$inc:{marks:5}});
+    |                                         ^
+db.students.updateMany({marks:{$lte:50}},{$inc:{marks:5}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.students.find()
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Rajesh',
+  age: 25,
+  dept: 'IT',
+  marks: 55
+}
+db.students.updateMany({dept:"IT"},{$set:{status:"active",sem:2}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+db.students.find();
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90,
+  sem: 2,
+  status: 'active'
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Rajesh',
+  age: 25,
+  dept: 'IT',
+  marks: 55,
+  sem: 2,
+  status: 'active'
+}
+db.students.replaceOne({name:"Rajesh"},{name:"Tumbu",age:24,dept:"ECE"});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.students.find();
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90,
+  sem: 2,
+  status: 'active'
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Tumbu',
+  age: 24,
+  dept: 'ECE'
+}
+db.students.updateOne({name:"Ammaluu"},{$set:{name:"Ammaluu",age:19,dept:"CSM"}},{upsert:true});
+{
+  acknowledged: true,
+  insertedId: ObjectId('69e33a6fc4f477e5f87a0a73'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+db.students.find();
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90,
+  sem: 2,
+  status: 'active'
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Tumbu',
+  age: 24,
+  dept: 'ECE'
+}
+{
+  _id: ObjectId('69e33a6fc4f477e5f87a0a73'),
+  name: 'Ammaluu',
+  age: 19,
+  dept: 'CSM'
+}
+db.students.updateMany({},{$unset:{status:""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.students.find();
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b4'),
+  name: 'Abhilash',
+  age: 19,
+  dept: 'IT',
+  marks: 90,
+  sem: 2
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b6'),
+  name: 'Thanvith',
+  age: 15,
+  dept: 'AIDS',
+  marks: 75
+}
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b7'),
+  name: 'Tumbu',
+  age: 24,
+  dept: 'ECE'
+}
+{
+  _id: ObjectId('69e33a6fc4f477e5f87a0a73'),
+  name: 'Ammaluu',
+  age: 19,
+  dept: 'CSM'
+}
+db.students.updateOne({name:"Snithika"},{$put:{hobbies:"coding"}});
+MongoServerError: Unknown modifier: $put. Expected a valid update modifier or pipeline-style update specified as an array
+db.students.updateOne({name:"Snithika"},{$push:{hobbies:"coding"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.students.find({name:"Snithika"});
+{
+  _id: ObjectId('69e25c09acac79d17c53b2b5'),
+  name: 'Snithika',
+  age: 19,
+  dept: 'CSE',
+  marks: 100,
+  hobbies: [
+    'coding'
+  ]
+}
+College
