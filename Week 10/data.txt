@@ -1,0 +1,13 @@
+Student Details
+================
+Name: Vikranth Jakkoju
+Roll Number: 160124737106
+Course: B.Tech Information Technology
+Semester: 4th
+Date: 4/20/2026
+
+Additional Info:
+================
+Skills: JavaScript, Node.js, Express.js
+Project: Completed Node.js experiments
+Status: In Progress
